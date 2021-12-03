@@ -1,11 +1,11 @@
 import Cos from "cos-nodejs-sdk-v5"
 
 function parseFileUrl(client: Cos, filename: string) {
-  const Bucket = 'jjxz-1257171806'
+  const Bucket = process.env.OSS_BUC
   return new Promise<string>((resolve) => {
     client.getObjectUrl({
       Bucket,
-      Region: 'ap-shanghai',
+      Region: process.env.OSS_REG,
       Key: filename,
       Sign: true,
       Method: 'put'
