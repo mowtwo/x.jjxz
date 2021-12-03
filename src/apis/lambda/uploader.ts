@@ -23,8 +23,8 @@ function parseFileUrl(client: Cos, filename: string) {
 export default async function getPostUrl(filename: string) {
 
   const client = new Cos({
-    SecretId: 'AKIDrTLwHaPN3j7F6gHB0d17nCLIxLmxfuhG',
-    SecretKey: 'TCe2DDzVIhsoVxBCwZzB6AxiCPL1TeYc',
+    SecretId: process.env.OSS_SEC_ID, // 此处为环境变量注入id
+    SecretKey: process.env.OSS_SEC_KEY, // 此处为环境变量注入key
   })
 
   return await parseFileUrl(client, filename)

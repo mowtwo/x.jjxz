@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node bootstrap",
-    "dev": "vite --host",
+    "dev": "env.bat&&vite --host",
     "build": "npm run build:client && npm run build:server",
     "build:client": "tsc && vite build",
     "build:server": "mw build",
