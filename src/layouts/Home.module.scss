@@ -1,0 +1,139 @@
+@import '../styles/mixins.scss';
+
+.home {
+  .header {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    height: 56px;
+    box-shadow: 0 3px 6px #dedede;
+    .wrapper {
+      margin: 0 auto;
+      width: 1000px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      margin-right: 64px;
+    }
+  }
+
+  .nav {
+    height: 100%;
+
+    & > ul {
+      display: flex;
+      height: 100%;
+    }
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      border-bottom: solid 4px transparent;
+      color: #333;
+      margin-right: 40px;
+      &:hover {
+        color: #ffa100;
+      }
+      &.active {
+        border-bottom: solid 4px #ff8b18;
+      }
+    }
+  }
+  .right {
+    margin-left: auto;
+  }
+  .search {
+    position: relative;
+    &.focus {
+      .wrapper {
+        border-color: #ffa100;
+      }
+    }
+    .wrapper {
+      width: 200px;
+      border: solid 1px #e5e5e5;
+      border-radius: 30px;
+      overflow: hidden;
+      padding: 0 15px;
+      display: flex;
+      input[type='text'] {
+        display: block;
+        flex: 1;
+        height: 30px;
+        border: none;
+        outline: none;
+        min-width: unset;
+      }
+      .button {
+        cursor: pointer;
+        font-size: 20px;
+      }
+    }
+    .history {
+      position: absolute;
+      width: 100%;
+      border: solid 1px #f5f5f5;
+      box-shadow: 0 0 6px #dedede;
+      background: #fff;
+      top: 38px;
+      left: 0;
+      font-size: 14px;
+      &.empty {
+        text-align: center;
+        color: #b3b3b3;
+        padding: 20px 0;
+      }
+      .list {
+        .item {
+          cursor: pointer;
+          display: flex;
+          height: 32px;
+          align-items: center;
+          color: #333;
+          padding: 0 15px;
+          &:hover {
+            background-color: #fff3e7;
+            color: #ffa100;
+          }
+
+          &.clear {
+            font-size: 12px;
+            color: #b3b3b3;
+            .icon {
+              margin-right: 10px;
+            }
+            &:hover {
+              color: #ffa100;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.mask {
+  @include mask;
+  .panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 18px 5px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 12px;
+  }
+  .title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .content {
+    margin: 12.5px 0 20px;
+    font-size: 14px;
+  }
+}
