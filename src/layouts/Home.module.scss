@@ -135,5 +135,26 @@
   .content {
     margin: 12.5px 0 20px;
     font-size: 14px;
+    color: #777;
+  }
+  .buttons {
+    .button {
+      margin: 10px;
+      border: none;
+      width: 100px;
+      height: 40px;
+      font-weight: bold;
+      border-radius: 40px;
+      font-size: 14px;
+      cursor: pointer;
+      &.cancel {
+        background-color: #eee;
+        color: #777;
+      }
+      &.primary {
+        background: linear-gradient(to right, #ff8b18, #ffb82b);
+        color: #fff;
+      }
+    }
   }
 }

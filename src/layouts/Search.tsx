@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { useSearchParams } from 'react-router-dom'
 import useSearchHistory from '../hooks/useSearchHistory'
 import nextTick from '../utils/nextTick'
+import resolveClass from '../utils/resolveClass'
 import style from './Home.module.scss'
 
 interface HistoryPanelProps {
@@ -63,12 +64,35 @@ const SearchHistoryPanel = (props: PropsWithoutRef<HistoryPanelProps>) => {
   }
 }
 
-const RemoveConfirm = () => {
+interface RemoveConfirmProps {
+  onCancel: () => void
+  onConfirm: () => void
+}
+
+const RemoveConfirm = (props: PropsWithoutRef<RemoveConfirmProps>) => {
   return createPortal(
     <div className={style.mask}>
       <div className={style.panel}>
         <div className={style.title}>提示</div>
         <div className={style.content}>确定清空搜索记录</div>
+        <div className={style.buttons}>
+          <button
+            className={resolveClass(style.button, style.cancel)}
+            onClick={() => {
+              props.onCancel()
+            }}
+          >
+            取消
+          </button>
+          <button
+            className={resolveClass(style.button, style.primary)}
+            onClick={() => {
+              props.onConfirm()
+            }}
+          >
+            清除
+          </button>
+        </div>
       </div>
     </div>,
     document.body,
@@ -148,7 +172,19 @@ export default function HomeLayoutSearch() {
       ) : (
         ''
       )}
-      {showClear ? <RemoveConfirm /> : ''}
+      {showClear ? (
+        <RemoveConfirm
+          onCancel={() => {
+            setShowClear(false)
+          }}
+          onConfirm={() => {
+            setHS([])
+            setShowClear(false)
+          }}
+        />
+      ) : (
+        ''
+      )}
     </div>
   )
 }
